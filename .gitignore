@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+wheels/
+.eggs/
+lib/
+lib64/
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# ChromaDB local storage
+chroma_db/
+chroma/
+*.chroma
+
+# Uploaded PDFs / documents
+data/raw/
+data/uploads/
+*.pdf
+
+# Model cache (sentence-transformers downloads)
+.cache/
+models/
+
+# Logs
+*.log
+logs/
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Docker
+*.tar
+
+# OS
+Thumbs.db
+
+# ─────────────────────────────────────────────────────────────
+# CONCEPTS GUIDE
+# This file is intentionally tracked so you (and recruiters)
+# can read it without cloning the rest of the repo.
+# See: CONCEPTS.md
+# ─────────────────────────────────────────────────────────────
