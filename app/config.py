@@ -1,3 +1,4 @@
+from pydantic import Field
 from pydantic_settings import BaseSettings
 
 
@@ -11,7 +12,7 @@ class Settings(BaseSettings):
     chunk_overlap: int = 64
     retrieval_top_k: int = 5
     confidence_threshold: float = 0.6
-    grounding_min_ratio: int = 75
+    grounding_min_ratio: int = Field(default=75, ge=0, le=100)  # thefuzz scores 0-100
 
 
 settings = Settings()
