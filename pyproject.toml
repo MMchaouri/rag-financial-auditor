@@ -1,0 +1,41 @@
+[project]
+name = "fin-compliance-auditor"
+version = "1.0.0"
+description = "RAG-powered SEC filing compliance auditor with source-grounded findings"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-chroma>=0.1.4",
+    "langchain-huggingface>=0.1.0",
+    "langchain-ollama>=0.2.0",
+    "langchain-text-splitters>=0.3.0",
+    "chromadb>=0.5.0",
+    "sentence-transformers>=3.0.0",
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.3.0",
+    "pypdf>=5.0.0",
+    "python-multipart>=0.0.12",
+    "thefuzz>=0.22.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "fpdf2>=2.8.0",
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "httpx>=0.27.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
