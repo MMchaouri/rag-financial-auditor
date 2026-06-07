@@ -75,8 +75,7 @@ mlartifacts/
 Thumbs.db
 
 # ─────────────────────────────────────────────────────────────
-# CONCEPTS GUIDE
-# This file is intentionally tracked so you (and recruiters)
-# can read it without cloning the rest of the repo.
-# See: CONCEPTS.md
+# TRACKED DOCS (intentionally NOT ignored)
+# CONCEPTS.md  — concept explainers at 3 levels
+# BACKLOG.md   — decisions log + todo explainers at 3 levels
 # ─────────────────────────────────────────────────────────────
