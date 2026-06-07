@@ -15,6 +15,7 @@ Rules:
 - evidence MUST be a verbatim quote from the provided context.
 - If no relevant evidence exists, set status to "Insufficient Evidence" and evidence to "".
 - confidence reflects certainty given the evidence found.
+- page MUST be the integer from the [Page N] tag nearest to the evidence; set to null if no tag is present.
 - Do not introduce any information not present in the provided context.
 - Output raw JSON only — no markdown fences, no commentary."""
 

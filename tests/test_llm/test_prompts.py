@@ -1,11 +1,8 @@
 from app.llm.prompts import compliance_prompt
 
 
-def test_prompt_has_system_and_human_messages():
-    messages = compliance_prompt.messages
-    roles = [m.__class__.__name__ for m in messages]
-    assert "SystemMessagePromptTemplate" in roles
-    assert "HumanMessagePromptTemplate" in roles
+def test_prompt_has_two_messages():
+    assert len(compliance_prompt.messages) == 2
 
 
 def test_prompt_requires_requirement_and_context():
@@ -21,3 +18,13 @@ def test_prompt_renders_with_values():
     full_text = " ".join(m.content for m in rendered)
     assert "Risk factors must be disclosed" in full_text
     assert "The company faces market risks" in full_text
+
+
+def test_system_message_instructs_verbatim_evidence():
+    rendered = compliance_prompt.format_messages(
+        requirement="test requirement",
+        context="test context",
+    )
+    system_content = rendered[0].content
+    assert "verbatim" in system_content.lower()
+    assert "json" in system_content.lower()

@@ -8,5 +8,5 @@ def get_llm() -> BaseChatModel:
         model=settings.ollama_model,
         base_url=settings.ollama_base_url,
         temperature=0,
-        format="json",
+        model_kwargs={"format": "json"},
     )
