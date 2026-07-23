@@ -47,6 +47,18 @@ Standard RAG architecture, built to keep every generated claim traceable back to
 
 **Not yet built:** a proper evaluation framework to measure retrieval and grounding quality against a labeled test set, rather than spot-checking by hand.
 
+## Trying it yourself
+
+`data/eval/aapl-10k.pdf` is a real filing, Apple's FY2025 10-K pulled straight from SEC EDGAR and converted to PDF, so anyone cloning this repo can run the pipeline against a genuine document instead of a toy example.
+
+1. Start Ollama locally and pull a model (the default in `app/config.py` is `mistral:7b-instruct`, any similarly sized instruct model works, set it via the `OLLAMA_MODEL` env var).
+2. Run the API: `uvicorn app.api.main:app --reload`.
+3. Upload the fixture through `/upload` (company name and filing year are just labels, use `Apple Inc.` and `2025`).
+4. Call `/audit` with the returned `doc_id`. Leave `requirements` empty to use the built-in default checklist, or pass your own.
+5. Compare what comes back against the actual filing. That comparison is the whole point, the grounding check only proves a quote is real, not that the verdict built on it is correct. That second part still needs a human reading the source once.
+
+To pull a different filing, use `scripts/prepare_eval_pdf.py <edgar_url> <output.pdf>`, same conversion used to build the fixture above.
+
 ## Stack
 
 Python, LangChain, ChromaDB, sentence-transformers, Ollama, FastAPI, Pydantic, pytest.

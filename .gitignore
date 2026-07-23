@@ -49,6 +49,7 @@ chroma/
 data/raw/
 data/uploads/
 *.pdf
+!data/eval/*.pdf
 
 # Model cache (sentence-transformers downloads)
 .cache/
@@ -74,8 +75,6 @@ mlartifacts/
 # OS
 Thumbs.db
 
-# ─────────────────────────────────────────────────────────────
-# TRACKED DOCS (intentionally NOT ignored)
-# CONCEPTS.md  — concept explainers at 3 levels
-# BACKLOG.md   — decisions log + todo explainers at 3 levels
-# ─────────────────────────────────────────────────────────────
+# Local-only docs — not for repo
+CONCEPTS.md
+BACKLOG.md
