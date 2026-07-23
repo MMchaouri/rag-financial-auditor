@@ -59,6 +59,21 @@ Standard RAG architecture, built to keep every generated claim traceable back to
 
 To pull a different filing, use `scripts/prepare_eval_pdf.py <edgar_url> <output.pdf>`, same conversion used to build the fixture above.
 
+## A real run against this fixture
+
+Ran the default requirement checklist against Apple's actual FY2025 10-K (local `qwen2.5:7b-instruct` model). Result, score 0.5, and the two misses are two different kinds of bug:
+
+| requirement | status | evidence | actually correct? |
+|---|---|---|---|
+| discloses material pending legal proceedings | Fail | "The Company is subject to other legal proceedings and claims that have not been fully resolved..." | No. That quote is a real disclosure of legal proceedings. Retrieval found the right passage, the model reasoned about it wrong. |
+| discloses liquidity and capital resources | Pass | "...balances of cash, cash equivalents and marketable securities, which totaled $132.4 billion... will be sufficient to satisfy its cash requirements..." | Yes. |
+| describes revenue recognition policy | Insufficient Evidence | none | No. The filing has a performance-obligations section covering this, retrieval never surfaced it. A recall miss, not a reasoning miss. |
+| includes an independent auditor's report | Pass | "Report of Independent Registered Public Accounting Firm" | Yes. |
+
+Both good matches were verified against the actual filing text by hand before trusting them, that manual check is the part an automated eval framework still needs to replace.
+
+The two failures matter because they're not the same problem: one is retrieval missing the right chunk (fixable with better chunking or query phrasing), the other is the model misjudging evidence it already had in front of it (fixable with prompt work or a stronger model). Lumping both into one "wrong" bucket would hide which layer actually needs the fix.
+
 ## Stack
 
 Python, LangChain, ChromaDB, sentence-transformers, Ollama, FastAPI, Pydantic, pytest.
