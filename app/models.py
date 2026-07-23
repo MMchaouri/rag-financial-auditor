@@ -32,6 +32,7 @@ class UploadResponse(BaseModel):
 
 class AuditRequest(BaseModel):
     doc_id: str
+    requirements: list[str] | None = None
 
 
 class AuditResponse(BaseModel):

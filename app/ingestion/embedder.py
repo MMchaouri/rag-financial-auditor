@@ -33,3 +33,10 @@ def store_chunks(
     vs = get_vector_store()
     vs.add_documents(chunks)
     return len(chunks)
+
+
+def get_doc_metadata(doc_id: str) -> dict | None:
+    vs = get_vector_store()
+    result = vs.get(where={"doc_id": doc_id}, limit=1)
+    metadatas = result.get("metadatas") or []
+    return metadatas[0] if metadatas else None
