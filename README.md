@@ -1,6 +1,6 @@
 # RAG Financial Compliance Auditor
 
-A retrieval-augmented system that checks SEC filings (10-K PDFs) against a list of compliance requirements and produces source-grounded findings, meaning every answer points back to the exact page and quote it came from.
+A general PDF RAG pipeline, chunking, embedding, retrieval, generation, applied to a concrete use case: checking SEC filings (10-K PDFs) against a list of compliance requirements and producing source-grounded findings, meaning every answer points back to the exact page and quote it came from. Nothing in the ingestion or retrieval layer is specific to financial filings, the compliance framing sits in the prompt and output schema, the pipeline itself would work on any PDF.
 
 I built this out of curiosity, wanting to try out RAG, chunking and retrieval myself with no constraints, just to understand how the pieces actually fit together.
 
